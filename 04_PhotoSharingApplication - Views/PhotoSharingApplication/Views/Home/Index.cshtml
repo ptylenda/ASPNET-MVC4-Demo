@@ -7,13 +7,12 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>All photos</title>
+    <title>Photo sharing and stuff</title>
 </head>
 <body>
     <div>
-        <h2>All Photos</h2>
-        <p>@Html.ActionLink("Yo, add!", "Create")</p>
-        @Html.Action("_PhotoGallery")
+        <h2>Latest photos, by da date, yo!</h2>
+        @Html.Action("_PhotoGallery", "Photo", new { number = 3 })
     </div>
 </body>
 </html>

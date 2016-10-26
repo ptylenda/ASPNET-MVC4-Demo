@@ -23,8 +23,7 @@ namespace PhotoSharingApplication.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var model = this.context.Photos.ToList();
-            return this.View(model);
+            return this.View();
         }
         
         [HttpGet]
@@ -93,12 +92,28 @@ namespace PhotoSharingApplication.Controllers
             Photo photo = context.Photos.Find(id);
             if (photo != null)
             {
-                return File(photo.PhotoFile, photo.ImageMimeType);
+                return this.File(photo.PhotoFile, photo.ImageMimeType);
             }
             else
             {
                 return null;
             }
+        }
+
+        [HttpGet]
+        [ChildActionOnly]
+        public ActionResult _PhotoGallery(int number = 0)
+        {
+            var photos = context.Photos
+                .OrderByDescending(x => x.CreateDate)
+                .AsQueryable();
+
+            if (number > 0)
+            {
+                photos = photos.Take(number);
+            }
+
+            return this.PartialView(photos.ToList());
         }
     }
 }

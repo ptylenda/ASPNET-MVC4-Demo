@@ -12,6 +12,7 @@ namespace PhotoSharingApplication.Models
         public int PhotoId { get; set; }
 
         [Required]
+        [DisplayName("Title")]
         public string Title { get; set; }
 
         [DisplayName("Picture")]
@@ -21,12 +22,15 @@ namespace PhotoSharingApplication.Models
 
         [DataType(DataType.MultilineText)]
         [MaxLength(500)]
+        [DisplayName("Description")]
         public string Description { get; set; }
 
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yy}")]
+        [DisplayName("Added date")]
         public DateTime CreateDate { get; set; }
 
+        [DisplayName("User")]
         public string UserName { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
