@@ -1,0 +1,24 @@
+﻿@model PhotoSharingApplication.Models.Photo
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Model.Title</title>
+</head>
+<body>
+    <div>
+        <h2>@Model.Title</h2>
+        <img src='@Url.Action("GetImage", "Photo", new { id = Model.PhotoId })' style="width: 800px" />
+        <p>@Html.DisplayFor(model => model.Description)</p>
+        <p>@Html.DisplayNameFor(model => model.UserName): @Html.DisplayFor(model => model.UserName)</p>
+        <p>@Html.DisplayNameFor(model => model.CreateDate): @Html.DisplayFor(model => model.CreateDate)</p>
+        <p>@Html.ActionLink("Back!", "Index")</p>
+    </div>
+</body>
+</html>

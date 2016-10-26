@@ -1,0 +1,30 @@
+﻿@model List<PhotoSharingApplication.Models.Photo>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        @foreach (var photo in Model)
+        {
+            <h3>@Html.DisplayFor(x => photo.Title)</h3>
+            if (photo.PhotoFile != null)
+            {
+                <a href="@Url.Action("Display", "Photo", new { id = photo.PhotoId })">
+                    <img src="@Url.Action("GetImage", "Photo", new { id = photo.PhotoId })" style="width: 200px" />
+                </a>
+            }
+            
+            <p>@Html.DisplayNameFor(x => photo.UserName): @Html.DisplayFor(x => photo.UserName)</p>
+        }
+    </div>
+</body>
+</html>
