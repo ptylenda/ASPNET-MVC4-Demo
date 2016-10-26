@@ -1,0 +1,19 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>All photos</title>
+</head>
+<body>
+    <div>
+        <h2>All Photos</h2>
+        <p>@Html.ActionLink("Yo, add!", "Create")</p>
+        @Html.Action("_PhotoGallery")
+    </div>
+</body>
+</html>
