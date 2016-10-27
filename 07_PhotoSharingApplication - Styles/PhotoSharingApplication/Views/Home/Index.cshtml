@@ -1,0 +1,6 @@
+﻿@{
+    ViewBag.Title = "Photo sharing, yo, home.";
+}
+            
+<h2>Latest Photos:</h2>
+@Html.Action("_PhotoGallery", "Photo", new { number = 3 })
