@@ -1,0 +1,32 @@
+﻿@model List<PhotoSharingApplication.Models.Comment>
+
+@{
+    Layout = null;
+}
+
+@using (Ajax.BeginForm("_CommentsForPhoto", new { photoId = ViewBag.PhotoId}, new AjaxOptions { UpdateTargetId = "comments-tool" }))
+{
+    <div id="comments-tool">
+        <h3>Comments</h3>
+        <div id="all-comments">
+            @foreach (var comment in Model)
+            {
+                <div class="photo-comment">
+                    <div class="photo-comment-from">
+                        @Html.DisplayFor(x => comment.UserName)
+                    </div>
+                    <div class="photo-comment-subject">
+                        @Html.DisplayFor(x => comment.Subject)
+                    </div>
+                    <div class="photo-comment-body">
+                        @Html.DisplayFor(x => comment.Body)
+                    </div>
+                    @Html.ActionLink("Delete, yo!", "Delete", new { id = comment.CommentID })
+                </div>
+            }
+        </div>
+        <div class="add-comment-box" id="add-comment">
+            @Html.Action("_CreateComment", "Comment", new { photoId = ViewBag.PhotoId })
+        </div>
+    </div>
+}
