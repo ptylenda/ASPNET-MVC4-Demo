@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link type="text/css" rel="stylesheet" href="~/Content/PhotoSharingStyles.css" />
+    <script src="~/Scripts/jquery-1.8.0.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.unobtrusive-ajax.min.js"></script>   
+    <script src="~/Scripts/SlideShow.js"></script>
+    <script src="~/Scripts/global.js"></script> 
+</head>
+<body>
+
+    <h1 class="site-page-title">Photo sharing, yo!</h1>
+    <div class="login-controls">
+        @if (Request.IsAuthenticated) {
+            <div>
+                Hello, @System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(User.Identity.Name).
+                @Html.ActionLink("Log Off", "LogOff", "Account")
+                @Html.ActionLink("Reset", "ResetPassword", "Account")
+            </div>
+        } else {
+            <div>
+                @Html.ActionLink("Log In", "Login", "Account")
+                @Html.ActionLink("Register", "Register", "Account")
+            </div>
+        }
+    </div>
+    <div class="clear-floats" />
+    <div id="topmenu">
+        @Html.MvcSiteMap().Menu(false, true, true)
+    </div>    
+    <div id="breadcrumb">
+        Current Location: @Html.MvcSiteMap().SiteMapPath()
+    </div>
+    <div id="favorites-link">
+        @if (((IEnumerable<int>)Session["Favorites"]) != null && ((IEnumerable<int>)Session["Favorites"]).Any())
+        {
+            @Html.ActionLink("Yo, your fringin' favs slideshaw!", "SlideShowFavorites", "Photo");
+        }
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
