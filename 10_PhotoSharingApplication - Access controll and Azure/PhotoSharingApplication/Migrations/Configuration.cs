@@ -1,18 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.IO;
-using System.Linq;
-using System.Web;
-
-namespace PhotoSharingApplication.Models
+namespace PhotoSharingApplication.Migrations
 {
-    public class PhotoSharingInitializer : DropCreateDatabaseAlways<PhotoSharingContext>
+    using PhotoSharingApplication.Models;
+    using System;
+    using System.Collections.Generic;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
+    using System.Diagnostics;
+    using System.IO;
+    using System.Linq;
+    using System.Reflection;
+    using System.Web;
+    using System.Web.Hosting;
+
+    internal sealed class Configuration : DbMigrationsConfiguration<PhotoSharingContext>
     {
-        //This method puts sample data into the database
+        public Configuration()
+        {
+            AutomaticMigrationsEnabled = false;
+            ContextKey = "PhotoSharingApplication.Models.PhotoSharingContext";
+        }
+
         protected override void Seed(PhotoSharingContext context)
         {
             base.Seed(context);
+
+            if (context.Photos.Count() > 0)
+            {
+                return;
+            }
 
             //Create some photos
             var photos = new List<Photo>
@@ -21,7 +36,7 @@ namespace PhotoSharingApplication.Models
                     Title = "Sample Photo 1",
                     Description = "This is the first sample photo in the Adventure Works photo application",
                     UserName = "AllisonBrown",
-                    PhotoFile = getFileBytes("\\Images\\flower.jpg"),
+                    PhotoFile = GetFileBytes(MapPath("~\\Images\\flower.jpg")),
                     ImageMimeType = "image/jpeg",
                     CreatedDate = DateTime.Today.AddDays(-5)
                 },
@@ -29,7 +44,7 @@ namespace PhotoSharingApplication.Models
                     Title = "Sample Photo 2",
                     Description = "This is the second sample photo in the Adventure Works photo application",
                     UserName = "RogerLengel",
-                    PhotoFile = getFileBytes("\\Images\\orchard.jpg"),
+                    PhotoFile = GetFileBytes(MapPath("~\\Images\\orchard.jpg")),
                     ImageMimeType = "image/jpeg",
                     CreatedDate = DateTime.Today.AddDays(-4)
                 },
@@ -37,7 +52,7 @@ namespace PhotoSharingApplication.Models
                     Title = "Sample Photo 3",
                     Description = "This is the third sample photo in the Adventure Works photo application",
                     UserName = "AllisonBrown",
-                    PhotoFile = getFileBytes("\\Images\\path.jpg"),
+                    PhotoFile = GetFileBytes(MapPath("~\\Images\\path.jpg")),
                     ImageMimeType = "image/jpeg",
                     CreatedDate = DateTime.Today.AddDays(-3)
                 },
@@ -45,7 +60,7 @@ namespace PhotoSharingApplication.Models
                     Title = "Sample Photo 4",
                     Description = "This is the forth sample photo in the Adventure Works photo application",
                     UserName = "JimCorbin",
-                    PhotoFile = getFileBytes("\\Images\\fungi.jpg"),
+                    PhotoFile = GetFileBytes(MapPath("~\\Images\\fungi.jpg")),
                     ImageMimeType = "image/jpeg",
                     CreatedDate = DateTime.Today.AddDays(-2)
                 },
@@ -53,7 +68,7 @@ namespace PhotoSharingApplication.Models
                     Title = "Sample Photo 5",
                     Description = "This is the fifth sample photo in the Adventure Works photo application",
                     UserName = "JamieStark",
-                    PhotoFile = getFileBytes("\\Images\\pinkflower.jpg"),
+                    PhotoFile = GetFileBytes(MapPath("~\\Images\\pinkflower.jpg")),
                     ImageMimeType = "image/jpeg",
                     CreatedDate = DateTime.Today.AddDays(-1)
                 },
@@ -61,7 +76,7 @@ namespace PhotoSharingApplication.Models
                     Title = "Sample Photo 6",
                     Description = "This is the sixth sample photo in the Adventure Works photo application",
                     UserName = "JamieStark",
-                    PhotoFile = getFileBytes("\\Images\\blackberries.jpg"),
+                    PhotoFile = GetFileBytes(MapPath("~\\Images\\blackberries.jpg")),
                     ImageMimeType = "image/jpeg",
                     CreatedDate = DateTime.Today.AddDays(-11)
                 },
@@ -69,7 +84,7 @@ namespace PhotoSharingApplication.Models
                     Title = "Sample Photo 7",
                     Description = "This is the seventh sample photo in the Adventure Works photo application",
                     UserName = "BernardDuerr",
-                    PhotoFile = getFileBytes("\\Images\\coastalview.jpg"),
+                    PhotoFile = GetFileBytes(MapPath("~\\Images\\coastalview.jpg")),
                     ImageMimeType = "image/jpeg",
                     CreatedDate = DateTime.Today.AddDays(-10)
                 },
@@ -77,7 +92,7 @@ namespace PhotoSharingApplication.Models
                     Title = "Sample Photo 8",
                     Description = "This is the eigth sample photo in the Adventure Works photo application",
                     UserName = "FengHanYing",
-                    PhotoFile = getFileBytes("\\Images\\headland.jpg"),
+                    PhotoFile = GetFileBytes(MapPath("~\\Images\\headland.jpg")),
                     ImageMimeType = "image/jpeg",
                     CreatedDate = DateTime.Today.AddDays(-9)
                 },
@@ -85,7 +100,7 @@ namespace PhotoSharingApplication.Models
                     Title = "Sample Photo 9",
                     Description = "This is the ninth sample photo in the Adventure Works photo application",
                     UserName = "FengHanYing",
-                    PhotoFile = getFileBytes("\\Images\\pebbles.jpg"),
+                    PhotoFile = GetFileBytes(MapPath("~\\Images\\pebbles.jpg")),
                     ImageMimeType = "image/jpeg",
                     CreatedDate = DateTime.Today.AddDays(-8)
                 },
@@ -93,7 +108,7 @@ namespace PhotoSharingApplication.Models
                     Title = "Sample Photo 10",
                     Description = "This is the tenth sample photo in the Adventure Works photo application",
                     UserName = "SalmanMughal",
-                    PhotoFile = getFileBytes("\\Images\\pontoon.jpg"),
+                    PhotoFile = GetFileBytes(MapPath("~\\Images\\pontoon.jpg")),
                     ImageMimeType = "image/jpeg",
                     CreatedDate = DateTime.Today.AddDays(-7)
                 },
@@ -101,7 +116,7 @@ namespace PhotoSharingApplication.Models
                     Title = "Sample Photo 11",
                     Description = "This is the eleventh sample photo in the Adventure Works photo application",
                     UserName = "JamieStark",
-                    PhotoFile = getFileBytes("\\Images\\ripples.jpg"),
+                    PhotoFile = GetFileBytes(MapPath("~\\Images\\ripples.jpg")),
                     ImageMimeType = "image/jpeg",
                     CreatedDate = DateTime.Today.AddDays(-5)
                 },
@@ -109,7 +124,7 @@ namespace PhotoSharingApplication.Models
                     Title = "Sample Photo 12",
                     Description = "This is the twelth sample photo in the Adventure Works photo application",
                     UserName = "JimCorbin",
-                    PhotoFile = getFileBytes("\\Images\\rockpool.jpg"),
+                    PhotoFile = GetFileBytes(MapPath("~\\Images\\rockpool.jpg")),
                     ImageMimeType = "image/jpeg",
                     CreatedDate = DateTime.Today.AddDays(-3)
                 },
@@ -117,7 +132,7 @@ namespace PhotoSharingApplication.Models
                     Title = "Sample Photo 13",
                     Description = "This is the thirteenth sample photo in the Adventure Works photo application",
                     UserName = "AllisonBrown",
-                    PhotoFile = getFileBytes("\\Images\\track.jpg"),
+                    PhotoFile = GetFileBytes(MapPath("~\\Images\\track.jpg")),
                     ImageMimeType = "image/jpeg",
                     CreatedDate = DateTime.Today.AddDays(-1)
                 }
@@ -151,12 +166,34 @@ namespace PhotoSharingApplication.Models
             context.SaveChanges();
         }
 
+        private static string MapPath(string seedFile)
+        {
+            // If debug is needed, uncomment
+            /*if (!Debugger.IsAttached)
+            {
+                Debugger.Launch();
+            }*/
+
+            if (HttpContext.Current != null)
+            {
+                return HostingEnvironment.MapPath(seedFile);
+            }
+
+            var absolutePath = new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath;
+            var directoryName = Path.GetDirectoryName(absolutePath);
+            var path = Path.Combine(directoryName, ".." + seedFile.TrimStart('~').Replace('/', '\\'));
+
+            Console.WriteLine("Mapping {0} to {1}", seedFile, path);
+
+            return path;
+        }
+
         //This gets a byte array for a file at the path specified
         //The path is relative to the route of the web site
         //It is used to seed images
-        private byte[] getFileBytes(string path)
+        private static byte[] GetFileBytes(string path)
         {
-            FileStream fileOnDisk = new FileStream(HttpRuntime.AppDomainAppPath + path, FileMode.Open);
+            FileStream fileOnDisk = new FileStream(path, FileMode.Open);
             byte[] fileBytes;
             using (BinaryReader br = new BinaryReader(fileOnDisk))
             {
@@ -164,6 +201,5 @@ namespace PhotoSharingApplication.Models
             }
             return fileBytes;
         }
-
     }
 }

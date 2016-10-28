@@ -59,6 +59,6 @@ namespace PhotoSharingApplication.Models
         T IPhotoSharingContext.Delete<T>(T entity)
         {
             return Set<T>().Remove(entity);
-        }
+        }        
     }
 }

@@ -119,6 +119,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PhotoController.cs" />
@@ -126,13 +127,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610281553243_InitialCreate.cs" />
+    <Compile Include="Migrations\201610281553243_InitialCreate.Designer.cs">
+      <DependentUpon>201610281553243_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModelClasses.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IPhotoSharingContext.cs" />
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Models\PhotoDynamicNodeProvider.cs" />
     <Compile Include="Models\PhotoSharingContext.cs" />
-    <Compile Include="Models\PhotoSharingInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +180,9 @@
     <Content Include="Views\Web.config" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -233,6 +241,11 @@
     <Content Include="Views\Shared\_CommentsForPhoto.cshtml" />
     <Content Include="Views\Shared\_CreateComment.cshtml" />
     <Content Include="Views\Photo\SlideShow.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201610281553243_InitialCreate.resx">
+      <DependentUpon>201610281553243_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

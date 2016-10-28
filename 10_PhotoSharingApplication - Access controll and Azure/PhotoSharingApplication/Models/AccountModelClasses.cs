@@ -15,7 +15,7 @@ namespace PhotoSharingApplication.Models
         }
     }
 
-    public class LoginModel
+    public class Login
     {
         [Required]
         [Display(Name = "User name")]
@@ -29,7 +29,7 @@ namespace PhotoSharingApplication.Models
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterModel
+    public class Register
     {
         [Required]
         [Display(Name = "User name")]
@@ -47,7 +47,7 @@ namespace PhotoSharingApplication.Models
         public string ConfirmPassword { get; set; }
     }
 
-    public class LocalPasswordModel
+    public class LocalPassword
     {
         [Required]
         [DataType(DataType.Password)]

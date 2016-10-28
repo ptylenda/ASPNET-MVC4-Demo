@@ -16,9 +16,6 @@ namespace PhotoSharingApplication
     {
         protected void Application_Start()
         {
-            //Seed the database with sample data for development. This code should be removed for production.
-            Database.SetInitializer<PhotoSharingContext>(new PhotoSharingInitializer());
-
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
